@@ -1,22 +1,19 @@
-import "./App.css";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import EcoScore from "./Pages/EcoScore";
+import ProfilePage from "./Pages/ProfilePage";
 function App() {
-  const router = createHashRouter([
-    // {
-    //   path: "/",
-    //   element: <LoginPage />,
-    // },
-    {
-      path: "/",
-      element: <EcoScore />,
-    },
-  ]);
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/ecoscore" element={<EcoScore />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
