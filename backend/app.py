@@ -32,3 +32,39 @@ async def get_recommendations(product_id: str, limit: int = 10):
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/product/eco-metrics/{product_id}")
+async def get_eco_metrics(product_id: str):
+    """
+    Get eco-related metrics for a specific product.
+
+    Parameters:
+    - product_id: The ID of the product to get eco metrics for
+    """
+    if not products:
+        raise HTTPException(status_code=500, detail="Product data not loaded")
+
+    try:
+        # Find the product with the matching ID
+        product = next((p for p in products if p["_id"]["$oid"] == product_id), None)
+
+        if not product:
+            raise HTTPException(
+                status_code=404, detail=f"Product with ID {product_id} not found"
+            )
+
+        # Extract eco-related metrics
+        eco_metrics = {
+            "ecoScore": product["ecoScore"],
+            "carbonFootprint": product["carbonFootprint"],
+            "recyclability": product["recyclability"],
+            "waterUsage": product["waterUsage"],
+            "energyEfficiency": product["energyEfficiency"],
+            "biodegradability": product["biodegradability"],
+        }
+
+        return eco_metrics
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
