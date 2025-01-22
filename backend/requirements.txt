@@ -1,2 +1,7 @@
 fastapi
+fastapi[standard]
 uvicorn
+uvicorn[standard]
+numpy
+pandas
+scikit-learn
