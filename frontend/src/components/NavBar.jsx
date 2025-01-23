@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -28,6 +28,15 @@ import LogSidebar from "@/components/SideBar";
 import ThemeToggle from "@/components/themeToggle";
 
 export default function NavBar() {
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("token") !== null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <>
       {/* Navbar fixed at the top with margin from the top */}
@@ -35,29 +44,61 @@ export default function NavBar() {
         <div className="flex flex-row justify-between items-center">
           {/* Logo */}
           <div className="w-[50px]">
-            <img src="src/assets/logo.png" alt="Logo" />
+            <Link to="/">
+              <img src="src/assets/logo.png" alt="Logo" />
+            </Link>
           </div>
 
           {/* Menu Bar for larger screens */}
-          <div className="hidden md:flex">
-            <MenuBar />
+          <div className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="text-white hover:text-accent">
+              Home
+            </Link>
+            <Link to="/about" className="text-white hover:text-accent">
+              About
+            </Link>
+            <Link to="/ecoscore" className="text-white hover:text-accent">
+              Check Eco Score
+            </Link>
+            {isLoggedIn && (
+              <Link to="/community" className="text-white hover:text-accent">
+                Community
+              </Link>
+            )}
           </div>
 
-          {/* Login / Hamburger / Sidebar */}
-          <div className="flex flex-row items-center justify-evenly">
+          {/* Login / Profile / Logout */}
+          <div className="flex flex-row items-center space-x-4">
             <div className="hidden md:flex">
-              <Link to="/login">
-                <Button variant="muted" className="text-white">
-                  <User />
-                  Login/Signup
-                </Button>
-              </Link>
+              {isLoggedIn ? (
+                <>
+                  <Link to="/profile">
+                    <Button variant="muted" className="text-white mr-2">
+                      <User className="mr-2" />
+                      Profile
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="muted"
+                    className="text-white"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Link to="/login">
+                  <Button variant="muted" className="text-white">
+                    <User className="mr-2" />
+                    Login/Signup
+                  </Button>
+                </Link>
+              )}
             </div>
-            <div className="hidden md:flex text-white">
-              {/* Theme Toggle & Avatar Dropdown (commented for now) */}
+            {/* Mobile menu */}
+            <div className="md:hidden">
+              <LogSidebar />
             </div>
-            {/* LogSidebar component */}
-            <LogSidebar />
           </div>
         </div>
       </div>

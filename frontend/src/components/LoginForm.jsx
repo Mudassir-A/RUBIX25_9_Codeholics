@@ -1,11 +1,96 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const API_URL = "http://localhost:5000/api/auth";
+
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState("login");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setError(""); // Clear error when user types
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        })
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.username || !formData.email || !formData.password) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
+
+    if (formData.username.length < 3) {
+      setError("Username must be at least 3 characters long");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        })
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const changeTab = (newTab) => {
     setTab(newTab);
@@ -50,6 +135,8 @@ export default function LoginForm() {
                       type="email"
                       placeholder="m@example.com"
                       required
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="grid gap-2">
@@ -66,10 +153,13 @@ export default function LoginForm() {
                       type="password"
                       required
                       placeholder="Enter password"
+                      value={formData.password}
+                      onChange={handleChange}
                     />
                   </div>
+                  {error && <div className="text-red-500 text-sm">{error}</div>}
                   <Link to="/dash">
-                    <Button type="submit" className="w-full text-secondary">
+                    <Button type="submit" className="w-full text-secondary" onClick={handleLogin}>
                       Login
                     </Button>
                   </Link>
@@ -94,33 +184,51 @@ export default function LoginForm() {
                 </div>
                 <div className="grid gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="register-email">Email</Label>
+                    <Label htmlFor="username">Username</Label>
                     <Input
-                      id="register-email"
-                      type="email"
-                      placeholder="m@example.com"
+                      id="username"
+                      type="text"
                       required
+                      placeholder="Enter username"
+                      onChange={handleChange}
+                      value={formData.username}
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="register-password">Password</Label>
+                    <Label htmlFor="email">Email</Label>
                     <Input
-                      id="register-password"
+                      id="email"
+                      type="email"
+                      required
+                      placeholder="m@example.com"
+                      onChange={handleChange}
+                      value={formData.email}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                      id="password"
                       type="password"
                       required
                       placeholder="Enter password"
+                      onChange={handleChange}
+                      value={formData.password}
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>
                     <Input
-                      id="confirm-password"
+                      id="confirmPassword"
                       type="password"
                       required
                       placeholder="Confirm password"
+                      onChange={handleChange}
+                      value={formData.confirmPassword}
                     />
                   </div>
-                  <Button type="submit" className="w-full">
+                  {error && <div className="text-red-500 text-sm">{error}</div>}
+                  <Button type="submit" className="w-full" onClick={handleRegister}>
                     Register
                   </Button>
                 </div>

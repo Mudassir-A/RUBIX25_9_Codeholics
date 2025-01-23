@@ -17,14 +17,25 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link, useNavigate } from "react-router-dom";
 
 // import { Switch } from "./ui/switch";
 import ThemeToggle from "@/components/themeToggle";
+
 export default function LogSidebar() {
+  const isLoggedIn = localStorage.getItem("token") !== null;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <>
       <Sheet>
-        <SheetTrigger className="md:hidden flex ">
+        <SheetTrigger className="md:hidden flex">
           <Button variant="secondary">
             <Menu />
           </Button>
@@ -36,43 +47,55 @@ export default function LogSidebar() {
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
-              John Doe
+              {isLoggedIn ? (
+                JSON.parse(localStorage.getItem("user"))?.username || "User"
+              ) : (
+                "Guest"
+              )}
             </SheetTitle>
             <SheetDescription>
               <hr />
             </SheetDescription>
           </SheetHeader>
           <div className="text-base">
-            <Accordion collapsible>
+            <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-base">
-                  My Profile
+                  Menu
                 </AccordionTrigger>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="text-base">
-                  Some thing
-                </AccordionTrigger>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger className="text-base">
-                  Some thing{" "}
-                </AccordionTrigger>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger className="text-base">More</AccordionTrigger>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
-                <AccordionContent>Some thing</AccordionContent>
+                <AccordionContent>
+                  <Link to="/" className="block py-2">
+                    Home
+                  </Link>
+                  <Link to="/about" className="block py-2">
+                    About
+                  </Link>
+                  <Link to="/ecoscore" className="block py-2">
+                    Check Eco Score
+                  </Link>
+                  {isLoggedIn && (
+                    <>
+                      <Link to="/community" className="block py-2">
+                        Community
+                      </Link>
+                      <Link to="/profile" className="block py-2">
+                        Profile
+                      </Link>
+                      <Button
+                        variant="ghost"
+                        className="w-full text-left py-2"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </Button>
+                    </>
+                  )}
+                  {!isLoggedIn && (
+                    <Link to="/login" className="block py-2">
+                      Login/Signup
+                    </Link>
+                  )}
+                </AccordionContent>
               </AccordionItem>
             </Accordion>
             <div className="flex-row gap-2 flex items-center mt-4 justify-evenly ">
@@ -81,11 +104,6 @@ export default function LogSidebar() {
               {/* to be removed */}
             </div>
           </div>
-          <SheetFooter className="mt-4">
-            <Button className="flex flex-row gap-3">
-              <LogOutIcon /> Log out
-            </Button>
-          </SheetFooter>
         </SheetContent>
       </Sheet>
     </>

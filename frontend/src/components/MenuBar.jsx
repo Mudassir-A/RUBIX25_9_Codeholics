@@ -54,10 +54,18 @@ export default function MenuBar() {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
+
           <NavigationMenuItem className="pr-6">
             <Link href="/reviews" legacyBehavior passHref>
               <NavigationMenuLink className="hover:bg-accent hover:text-secondary p-3 rounded-md text-white">
                 About
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="pr-6">
+            <Link href="/reviews" legacyBehavior passHref>
+              <NavigationMenuLink className="hover:bg-accent hover:text-secondary p-3 rounded-md text-white">
+                Community
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

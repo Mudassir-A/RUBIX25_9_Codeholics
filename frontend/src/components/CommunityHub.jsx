@@ -1,200 +1,339 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Trash2, Plus } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-const POSTS_API = "http://localhost:5000/api/posts";
-const BRANDS_API = "http://localhost:5000/api/brands";
-const CHALLENGES_API = "http://localhost:5000/api/challenges";
+const API_BASE = "http://localhost:5000/api";
 
 export default function CommunityHub() {
   const [posts, setPosts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [challenges, setChallenges] = useState([]);
-  const [formData, setFormData] = useState({ title: "", description: "" });
+  const [error, setError] = useState("");
+
+  // Modal states
+  const [postModalOpen, setPostModalOpen] = useState(false);
+  const [brandModalOpen, setBrandModalOpen] = useState(false);
+
+  // Form states
+  const [newPost, setNewPost] = useState({ title: "", description: "" });
+  const [newBrand, setNewBrand] = useState({ name: "", description: "", website: "" });
+
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    loadPosts();
-    loadBrands();
-    loadChallenges();
+    fetchPosts();
+    fetchBrands();
+    fetchChallenges();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Fetch functions
+  const fetchPosts = async () => {
     try {
-      const response = await fetch(POSTS_API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert("Post added successfully!");
-        setFormData({ title: "", description: "" });
-        loadPosts();
-      } else {
-        throw new Error("Failed to add post");
-      }
-    } catch (error) {
-      console.error("Error adding post: ", error);
-    }
-  };
-
-  const loadPosts = async () => {
-    try {
-      const response = await fetch(POSTS_API);
+      const response = await fetch(`${API_BASE}/posts`);
       const data = await response.json();
       setPosts(data);
-    } catch (error) {
-      console.error("Error loading posts: ", error);
+    } catch (err) {
+      setError("Failed to fetch posts");
     }
   };
 
-  const loadBrands = async () => {
+  const fetchBrands = async () => {
     try {
-      const response = await fetch(BRANDS_API);
+      const response = await fetch(`${API_BASE}/brands`);
       const data = await response.json();
       setBrands(data);
-    } catch (error) {
-      console.error("Error loading brands: ", error);
+    } catch (err) {
+      setError("Failed to fetch brands");
     }
   };
 
-  const loadChallenges = async () => {
+  const fetchChallenges = async () => {
     try {
-      const response = await fetch(CHALLENGES_API);
-      const data = await response.json();
-      setChallenges(data);
-    } catch (error) {
-      console.error("Error loading challenges: ", error);
-    }
-  };
-
-  const markChallengeCompleted = async (id) => {
-    try {
-      const response = await fetch(`${CHALLENGES_API}/${id}`, {
-        method: "PUT",
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/challenges", {
+        headers: {
+          "x-auth-token": token
+        }
       });
       const data = await response.json();
-      alert(data.message);
-      loadChallenges();
-    } catch (error) {
-      console.error("Error marking challenge as completed:", error);
+      setChallenges(data);
+    } catch (err) {
+      setError("Failed to fetch challenges");
+    }
+  };
+
+  // Submit handlers
+  const handlePostSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${API_BASE}/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify(newPost)
+      });
+
+      if (!response.ok) throw new Error("Failed to create post");
+
+      const data = await response.json();
+      setPosts([data, ...posts]);
+      setNewPost({ title: "", description: "" });
+      setPostModalOpen(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleBrandSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${API_BASE}/brands`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify(newBrand)
+      });
+
+      if (!response.ok) throw new Error("Failed to create brand");
+
+      const data = await response.json();
+      setBrands([data, ...brands]);
+      setNewBrand({ name: "", description: "", website: "" });
+      setBrandModalOpen(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleCompleteChallenge = async (challengeId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("Please login to complete challenges");
+        return;
+      }
+
+      const response = await fetch("http://localhost:5000/api/challenges/complete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token
+        },
+        body: JSON.stringify({ challengeId })
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to complete challenge");
+      }
+
+      const data = await response.json();
+
+      // Update user's score in localStorage
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        user.sustain_score = data.newScore;
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
+      // Update challenges list to show completion
+      setChallenges(challenges.map(challenge => 
+        challenge.id === challengeId 
+          ? { ...challenge, completed: true }
+          : challenge
+      ));
+
+    } catch (err) {
+      console.error("Complete challenge error:", err);
+      setError("Failed to complete challenge. Please try again.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-background mt-32 p-3">
-      <h1 className="text-4xl font-bold text-center">
-        Community & Awareness Hub
-      </h1>
+    <div className="container mx-auto p-4 mt-28">
+      {/* Action Buttons */}
+      <div className="flex gap-4 mb-8">
+        <Dialog open={postModalOpen} onOpenChange={setPostModalOpen}>
+          <DialogTrigger asChild>
+            <Button>
+              <Plus className="mr-2 h-4 w-4" />
+              New Post
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Create New Post</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={handlePostSubmit} className="space-y-4">
+              <Input
+                placeholder="Title"
+                value={newPost.title}
+                onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+                required
+              />
+              <Textarea
+                placeholder="What's on your mind?"
+                value={newPost.description}
+                onChange={(e) => setNewPost({ ...newPost, description: e.target.value })}
+                required
+              />
+              <Button type="submit">Post</Button>
+            </form>
+          </DialogContent>
+        </Dialog>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Post Form */}
-        <section className="bg-white rounded-xl shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
-            Share a Tip
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-              placeholder="Title"
-              className="w-full p-3 border border-gray-200 rounded-lg focus:border-secondary focus:ring-1 focus:ring-secondary"
-              required
-            />
-            <textarea
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-              placeholder="Share your tip..."
-              className="w-full p-3 border border-gray-200 rounded-lg h-32 focus:border-secondary focus:ring-1 focus:ring-secondary"
-              required
-            />
-            <button
-              type="submit"
-              className="w-1/2 mx-auto block bg-secondary text-white py-3 px-6 rounded-lg font-bold hover:bg-emerald-600 transform hover:scale-105 transition-all">
-              Post
-            </button>
-          </form>
-        </section>
+        <Dialog open={brandModalOpen} onOpenChange={setBrandModalOpen}>
+          <DialogTrigger asChild>
+            <Button>
+              <Plus className="mr-2 h-4 w-4" />
+              New Brand
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Add Responsible Brand</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={handleBrandSubmit} className="space-y-4">
+              <Input
+                placeholder="Brand Name"
+                value={newBrand.name}
+                onChange={(e) => setNewBrand({ ...newBrand, name: e.target.value })}
+                required
+              />
+              <Textarea
+                placeholder="Brand Description"
+                value={newBrand.description}
+                onChange={(e) => setNewBrand({ ...newBrand, description: e.target.value })}
+                required
+              />
+              <Input
+                placeholder="Website URL"
+                type="url"
+                value={newBrand.website}
+                onChange={(e) => setNewBrand({ ...newBrand, website: e.target.value })}
+              />
+              <Button type="submit">Add Brand</Button>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </div>
 
-        {/* Posts */}
-        <section className="bg-white rounded-xl shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
-            Community Posts
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post, index) => (
-              <div
-                key={index}
-                className="p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-all hover:-translate-y-1">
-                <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                <p className="text-gray-600 mb-2">{post.description}</p>
-                <small className="text-gray-500">
-                  Posted on {new Date(post.created_at).toLocaleString()}
-                </small>
-              </div>
-            ))}
-          </div>
-        </section>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
 
-        {/* Brands */}
-        <section className="bg-white rounded-xl shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
-            Discover Responsible Brands
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {brands.map((brand, index) => (
-              <div
-                key={index}
-                className="p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-all hover:-translate-y-1">
-                <strong className="block mb-2">{brand.name}</strong>
-                <p className="text-gray-600 mb-2">{brand.description}</p>
-                {brand.link ? (
-                  <a
-                    href={brand.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-secondary hover:underline font-semibold">
-                    Visit
-                  </a>
-                ) : (
-                  <span className="text-gray-500">No Website</span>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
+      {/* Challenges Section */}
+      <div className="mb-8 bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
+          Eco Challenges
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {challenges.map((challenge) => (
+            <Card key={challenge.id} className="h-[300px] flex flex-col">
+              <CardHeader className="flex-none">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-lg">{challenge.title}</CardTitle>
+                  </div>
+                  {currentUser && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleCompleteChallenge(challenge.id)}
+                      disabled={challenge.completed}
+                      className={`${
+                        challenge.completed
+                          ? "bg-green-100 text-green-700"
+                          : "text-green-600 hover:text-green-700"
+                      }`}
+                    >
+                      {challenge.completed 
+                        ? "Completed!" 
+                        : "Mark Complete (+10 pts)"}
+                    </Button>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow overflow-y-auto">
+                <p className="text-sm mb-2">{challenge.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
 
-        {/* Challenges */}
-        <section className="bg-white rounded-xl shadow-md p-6">
-          <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
-            Eco-Friendly Challenges
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {challenges.map((challenge) => (
-              <div
-                key={challenge.id}
-                className="p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-all hover:-translate-y-1">
-                <strong className="block mb-2">{challenge.title}</strong>
-                <p className="text-gray-600 mb-4">{challenge.description}</p>
-                <button
-                  onClick={() => markChallengeCompleted(challenge.id)}
-                  disabled={challenge.completed}
-                  className={`w-full py-2 px-4 rounded-lg font-bold transition-all ${
-                    challenge.completed
-                      ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-secondary text-white hover:bg-emerald-600 hover:scale-105"
-                  }`}>
-                  {challenge.completed ? "Completed" : "Mark as Completed"}
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
+      {/* Posts Grid */}
+      <section className="bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
+          Top Posts
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[600px] overflow-y-auto p-4 bg-white rounded-xl shadow-md p-6 mb-8 ">
+          {posts.map((post) => (
+            <Card key={post.id} className="h-[200px] flex flex-col">
+              <CardHeader className="flex-none">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-lg">{post.title}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      Posted by {post.username} • {new Date(post.created_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                  {currentUser && currentUser.id === post.user_id && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDelete(post.id)}
+                      className="h-8 w-8"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow overflow-y-auto">
+                <p className="text-sm">{post.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Brands */}
+      <section className="bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 className="text-2xl font-bold text-secondary border-l-4 border-emerald-400 pl-2 mb-4">
+          Discover Responsible Brands
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {brands.map((brand) => (
+            <div
+              key={brand.id}
+              className="p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-all hover:-translate-y-1">
+              <strong className="block mb-2">{brand.name}</strong>
+              <p className="text-gray-600 mb-2">{brand.description}</p>
+              {brand.website && (
+                <a
+                  href={brand.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary hover:underline font-semibold">
+                  Visit
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

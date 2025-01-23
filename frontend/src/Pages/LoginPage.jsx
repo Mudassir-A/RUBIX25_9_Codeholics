@@ -8,7 +8,6 @@ export default function LoginPage() {
     <div className="flex min-h-screen">
       <LoginForm />
       <div className="absolute top-4 right-4">
-        <ThemeToggle />
       </div>
     </div>
   );
