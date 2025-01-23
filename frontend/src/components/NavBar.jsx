@@ -54,9 +54,9 @@ export default function NavBar() {
             <Link to="/" className="text-white hover:text-accent">
               Home
             </Link>
-            <Link to="/about" className="text-white hover:text-accent">
+            {/* <Link to="/about" className="text-white hover:text-accent">
               About
-            </Link>
+            </Link> */}
             <Link to="/ecoscore" className="text-white hover:text-accent">
               Check Eco Score
             </Link>

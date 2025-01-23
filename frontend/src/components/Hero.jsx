@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -15,15 +16,16 @@ export default function Hero() {
       {/* Left side: Text and Search Bar */}
       <div className="flex flex-col items-start justify-center w-3/4 pl-8 pr-8">
         <CardHeader>
-          <CardTitle className="text-3xl md:text-5xl text-left text-black font-semibold">
-            Some Slogan
+          <CardTitle className="text-3xl md:text-6xl text-left text-black font-semibold">
+            Your Guide to Verified Sustainable Living Choices
           </CardTitle>
-          <CardDescription className="text-lg md:text-2xl text-left text-black">
-            Some description
+          <CardDescription className="text-lg md:text-xl text-left text-black">
+            Empowering your eco-friendly journey with meticulously <br></br>
+            researched and trusted recommendations
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="flex flex-col md:flex-row gap-2 max-w-[900px] w-full rounded-3xl shadow-xl border-4 p-3 bg-white bg-opacity-60">
+          {/* <form className="flex flex-col md:flex-row gap-2 max-w-[900px] w-full rounded-3xl shadow-xl border-4 p-3 bg-white bg-opacity-60">
             <div className="w-full flex flex-row items-center">
               <Input
                 placeholder="Search for something"
@@ -34,7 +36,10 @@ export default function Hero() {
               <Search className="md:w-[20px] mr-2" />
               Search
             </Button>
-          </form>
+          </form> */}
+          <Button className="text-lg p-4 w-36 ">
+            <Link className="text-secondary"  to={'/login'}>Explore</Link>
+          </Button>
         </CardContent>
       </div>
 

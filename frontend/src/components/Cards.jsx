@@ -19,9 +19,9 @@ export default function Cards({ title, desc, content }) {
       </CardHeader>
       <CardContent>{content}</CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" className="bg-background">
+        {/* <Button variant="outline" className="bg-background">
           Explore
-        </Button>
+        </Button> */}
       </CardFooter>
     </Card>
   );

@@ -13,9 +13,18 @@ export default function HomePage() {
       <main>
         <Hero />
         <div className="flex p-8 mt-12 bg-primary justify-evenly">
-          <Cards title={"Eco score"} desc={"describing"} content={"some content"}/>
-          <Cards title={"Eco score"} desc={"describing"} content={"some content"}/>
-          <Cards title={"Eco score"} desc={"describing"} content={"some content"}/>
+          <Cards
+            title={"Eco score"}
+            desc={"Get to know the eco score of your products"}
+          />
+          <Cards
+            title={"Community"}
+            desc={"Join Community to get more insights on sustainable shopping"}
+          />
+          <Cards
+            title={"View Alternatives"}
+            desc={"Reduce Your carbon footprint"}
+          />
         </div>
       </main>
     </>
