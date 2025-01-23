@@ -1,0 +1,101 @@
+Product ID,Product Name,Product Category,Brand Name,Price,Weight/Volume,Carbon Footprint,Water Usage,Packaging Material,Recyclability,Ethical Sourcing,Manufacturing Location,Sustainability Rating,Suggested Eco Improvements,Product Popularity,Barcode/Identifier
+1001,EcoPure Laundry Detergent,cosmetics,GreenEarth,12.99,1L,0.15,0.5,biodegradable,8,1,USA,Excellent,None,Medium,123456789012
+PRD-001234,EcoCycle Paper Towels,groceries,GreenEarth,4.99,1000 sheets,0.52,2.5,biodegradable,9,1,USA,Excellent,None,Medium,123456789012
+1001,EcoCycle Paper Towels,household,GreenEarth,4.99,8 rolls,0.23,1.5,recycled paper,9,1,USA,Excellent,Reduce water usage,Medium,843219876543
+1001,EcoCycle Laundry Detergent,household,GreenEarth,12.99,1.5L,0.25,0.3,recyclable plastic,9,1,USA,Excellent,None,Medium,123456789012
+P-001234,EcoCycle Phone Case,Electronics,GreenCycle,24.99,One Size,0.25,0.5,Recyclable Plastic,9,1,USA,Excellent,None,Medium,123456789012
+PID_0023,Cruelty-Free Bamboo Toothbrush,cosmetics,EcoSense,12.99,One Size,0.7,0.5,biodegradable,9,1,India,Excellent,None,Medium,123456789012
+10001,EcoPure Bamboo Toothbrush,cosmetics,GreenEarth,12.99,One Size,0.15,0.5,biodegradable,9,1,India,Excellent,,High,123456789012
+PROD-00156,Bamboo Toothbrush,cosmetics,EcoSense,8.99,One Size,0.12,0.5,biodegradable,9,1,India,Excellent,,High,987654321098
+1001,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,One Size,0.15,0.5,biodegradable,10,1,USA,Excellent,,Medium,123456789012
+10101,EcoCycle Bamboo Toothbrush,cosmetics,GreenClean,8.99,One Size,0.05,0.1,biodegradable,9,1,Thailand,Excellent,,High,853421009123
+ID_16,EcoCycle Reusable Water Bottle,groceries,EcoCycle,19.99,One Size,0.12,0.5,biodegradable,8,1,India,Excellent,,Medium,123456789012
+5001,Vegan Chocolate Bar,groceries,GreenEarth,4.99,100g,1.25,2.8,biodegradable,9,1,USA,Excellent,None,Medium,987654321012
+PROD_00123,EcoCycle Bamboo Toothbrush,cosmetics,GreenEarth,8.99,One Size,0.15,0.5,biodegradable,9,1,India,Excellent,None,Medium,123456789012
+Prod-001234,EcoCycle Laundry Detergent,household,GreenClean,12.99,1L,0.42,0.12,biodegradable,8,1,USA,Excellent,None,Medium,123456789012
+PRD_001234,EcoCycle Hair Dye,cosmetics,GreenEarth,14.99,300ml,0.45,1.8,recyclable plastic,8,1,Germany,Excellent,Reduce carbon footprint,High,987654321098
+12345,EcoCycle Paper Towels,groceries,GreenEarth,4.99,One Size,0.25,1.5,biodegradable,9,1,USA,Excellent,,Medium,42101123456789
+101,EcoCycle Laundry Detergent,cosmetics,GreenEarth,12.99,1L,0.5,0.1,biodegradable,8,1,USA,Excellent,None,Medium,123456789012
+101,EcoCycle Reusable Water Bottle,electronics,GreenEarth,29.99,One Size,1.2,2.5,biodegradable,8,1,USA,Excellent,,High,123456789012
+P00100,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,1L,0.5,0.1,biodegradable,8,1,USA,Excellent,None,High,123456789012
+1042,EcoCycle Reusable Water Bottle,groceries,GreenEarth,14.99,1L,0.35,2.1,biodegradable,9,1,USA,Excellent,Reduce carbon footprint by 20%,Medium,8421034123456
+501,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,One Size,1.23,0.2,biodegradable,9,1,India,Excellent,None,Medium,8500235678901
+1001,Bamboo Toothbrush Set,cosmetics,GreenEarth,12.99,One Size,0.25,0.1,biodegradable,9,1,India,Excellent,,Medium,8421123589105
+501,EcoCycle Reusable Straws,groceries,GreenEarth,9.99,Pack of 10,0.25,0.5,biodegradable,9,1,USA,Excellent,,High,123456789012
+10001,EcoCycle Shampoo Bar,cosmetics,GreenEarth,8.99,100g,0.25,0.5,biodegradable,9,1,USA,Excellent,None,Medium,123456789012
+10001,EcoCycle Laundry Detergent,household essentials,GreenClean,12.99,1L,0.5,2.5,biodegradable,9,1,USA,Excellent,,Medium,123456789012
+1001,Bamboo Toothbrush,cosmetics,EcoBrite,5.99,One Size,0.035,0.2,biodegradable,8,1,India,Excellent,None,Medium,123456789012
+PRT-001234,EcoCycle Paper Towels,groceries,GreenEarth,4.99,1000 sheets,1.23,0.5,paper,8,1,USA,Excellent,None,High,123456789012
+1001,EcoCycle Notebook,electronics,GreenTech,12.99,One Size,0.005,0.01,biodegradable,9,1,USA,Excellent,None,Medium,850123456789
+1001,EcoCycle Reusable Water Bottle,groceries,GreenEarth,24.99,One Size,1.2,0.5,plastic,8,1,USA,Excellent,None,High,123456789012
+501,EcoCycle Reusable Bags,groceries,GreenEarth,9.99,One Size,0.35,0.5,paper,8,1,India,Excellent,None,High,123456789012
+PRD-001234,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,1L,0.2,0.5,biodegradable,9,1,India,Excellent,None,Medium,123456789012
+101,EcoCycle Toothbrush,cosmetics,GreenEarth,9.99,One Size,0.15,0.1,biodegradable,8,1,India,Excellent,,Medium,123456789012
+501,EcoCycle Reusable Water Bottle,groceries,GreenEarth,14.99,One Size,1.8,0.5,biodegradable,9,1,India,Excellent,None,High,852117008542
+1001,EcoCycle Bamboo Toothbrush,cosmetics,GreenEarth,9.99,One Size,0.15,0.1,biodegradable,9,1,India,Excellent,,High,123456789012
+PDT-00016,EcoCycle Biodegradable Dish Soap,cosmetics,GreenEarth,4.99,500ml,1.2,0.5,biodegradable,9,1,USA,Excellent,None,High,123456789012
+5001,Zero-Waste Deodorant Stick,cosmetics,EcoSense,12.99,100g,0.35,0.5,biodegradable,8,1,India,Excellent,None,Medium,123456789012
+PRD_001234,Bamboo Toothbrush,cosmetics,GreenEarth,8.99,One Size,0.15,0.5,biodegradable,9,1,India,Excellent,None,Medium,123456789012
+10001,EcoCycle Recycling Bag,groceries,GreenEarth,9.99,One Size,0.3,0.1,biodegradable,10,1,USA,Excellent,,High,123456789012
+1001,Vegan Bamboo Toothbrush,cosmetics,EcoBrush,9.99,One Size,0.035,0.5,biodegradable,9,1,India,Excellent,,Medium,123456789012
+1001,EcoCycle Yoga Mat,cosmetics,GreenEarth,29.99,One Size,0.5,10.0,biodegradable,8,1,India,Excellent,None,Medium,123456789012
+1001,EcoCycle Reusable Water Bottle,groceries,GreenEarth,24.99,1L,0.02,0.1,paper,9,1,USA,Excellent,None,High,123456789012
+10001,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,1L,0.5,0.2,paper,9,1,USA,Excellent,None,High,123456789012
+501,EcoCycle Reusable Water Bottle,groceries,GreenEarth,24.99,One Size,0.25,0.5,biodegradable,8,1,USA,Excellent,None,Medium,123456789012
+10001,EcoCycle Shampoo,cosmetics,GreenEarth,8.99,300ml,0.23,0.5,biodegradable,8,1,USA,Excellent,None,Medium,123456789012
+1001,EcoPure Hand Soap,cosmetics,GreenEarth,4.99,500ml,0.52,2.1,biodegradable,9,1,India,Excellent,None,Medium,851215461238
+PROD_000016,EcoCycle Yoga Mat,clothing,GreenEarth,45.99,One Size,3.27,12.5,biodegradable,9,1,India,Excellent,None,High,123456789012
+PROD_0010,Vegan Bamboo Toothbrush,cosmetics,EcoSense,8.99,One Size,0.32,0.5,biodegradable,8,1,India,Excellent,None,High,123456789012
+PRT-0012,EcoCycle Laptop Sleeve,Electronics,GreenTech,29.99,One Size,0.85,10.2,Biodegradable,8,1,USA,Excellent,None,Medium,987654321098
+501,EcoCycle Compost Bin,groceries,GreenEarth,45.99,One Size,1.8,20.0,recyclable plastic,8,1,India,Excellent,None,Medium,857628321569
+1001,EcoCycle Reusable Water Bottle,electronics,GreenTech,29.99,One Size,0.75,0.2,biodegradable,9,1,USA,Excellent,None,High,123456789012
+10001,Bamboo Toothbrush Set,cosmetics,EcoSense,9.99,One Size,0.05,0.1,biodegradable,9,1,India,Excellent,,High,123456789012
+P00016,EcoCycle Shampoo Bars,cosmetics,GreenEarth,9.99,120g,0.5,0.2,biodegradable,9,1,India,Excellent,None,High,012345678901
+1001,EcoCycle Shampoo,cosmetics,GreenEarth,12.99,250ml,0.32,1.5,biodegradable,9,1,India,Excellent,Reduce water usage,Medium,123456789012
+1001,EcoCycle Shampoo,cosmetics,GreenEarth,8.99,300ml,0.23,1.5,biodegradable,9,1,India,Excellent,None,High,853219083547
+10000,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,1L,0.25,0.5,biodegradable,8,1,India,Excellent,None,High,123456789012
+1001,EcoCycle Water Bottle,groceries,GreenEarth,19.99,One Size,0.5,2.1,biodegradable,9,1,India,Excellent,,Medium,987654321012
+PRD_10001,EcoCycle Paper Towels,groceries,GreenEarth,5.99,6 rolls,1.23,0.35,recycled paper,9,1,USA,Excellent,,High,123456789012
+101,Zero Waste Deodorant,cosmetics,GreenCycle,12.99,100g,0.25,0.5,biodegradable,9,1,India,Excellent,None,Medium,412345678901
+10001,EcoCycle Reusable Bag,groceries,GreenEarth,9.99,One Size,0.2,0.5,biodegradable,9,1,USA,Excellent,,High,123456789012
+2024,EcoCycle Laundry Detergent,cosmetics,GreenEarth,8.99,1L,0.12,0.5,biodegradable,8,1,USA,Excellent,None,Medium,123456789012
+1001,EcoCycle Bike Helmet,clothing,GreenCycle,99.99,One Size,0.12,10.0,biodegradable,9,1,USA,Excellent,None,Medium,123456789012
+501,EcoCycle Bamboo Toothbrush,cosmetics,GreenEarth,9.99,One Size,0.25,0.5,biodegradable,8,1,India,Excellent,,High,8465230987654
+1001,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,One Size,0.35,0.2,paper,9,1,India,Excellent,Reduce carbon footprint,High,123456789012
+P00016,EcoCycle Hair Dye,cosmetics,GreenEarth,14.99,250ml,0.32,0.5,recyclable plastic,8,1,USA,Excellent,Reduce carbon footprint,High,123456789012
+ID_101,EcoCycle Reusable Water Bottle,electronics,GreenEarth,24.99,One Size,0.5,0.01,paper,9,1,USA,Excellent,None,High,123456789012
+1001,EcoCycle Bike Helmet,clothing,GreenGear,49.99,One Size,0.23,0.5,biodegradable,9,1,Germany,Excellent,Reduce carbon footprint through local production,Medium,421983104454
+Prod-0000015,EcoCycle Reusable Water Bottle,groceries,GreenEarth,14.99,One Size,0.25,0.5,biodegradable,9,1,USA,Excellent,,High,123456789012
+1001,EcoCycle Recycled Paper Towels,groceries,GreenEarth,4.99,"4 rolls, 250 sheets per roll",0.15,0.5,recycled paper,8,1,USA,Excellent,none,Medium,123456789012
+1002,Biodegradable Bamboo Toothbrush,cosmetics,EcoSense,9.99,one toothbrush,0.05,0.2,biodegradable bamboo,9,1,India,Excellent,none,High,987654321098
+1003,Cotton T-Shirt,clothing,BrandX,19.99,one size,1.5,10.0,plastic,2,0,China,Poor,"Switch to biodegradable packaging, reduce water usage",Medium,654321098765
+1004,FastCharge Phone Charger,electronics,EcoCharge,14.99,one unit,0.8,1.0,mixed,5,0,South Korea,Moderate,Switch to recyclable packaging,High,987654321098
+1005,Organic Avocado Oil,groceries,GreenEarth,12.99,500ml,0.3,5.0,glass,10,1,Mexico,Excellent,none,Medium,123456789012
+1006,Cruelty-Free Mascara,cosmetics,EcoSense,10.99,one unit,0.2,2.0,biodegradable plastic,8,1,India,Excellent,none,High,987654321098
+1007,100% Cotton Socks,clothing,BrandX,8.99,three pairs,0.6,8.0,paper,9,1,China,Excellent,none,Medium,654321098765
+1008,Portable Power Bank,electronics,EcoCharge,29.99,one unit,1.2,3.0,plastic,4,0,South Korea,Poor,"Switch to biodegradable packaging, reduce carbon footprint",High,987654321098
+1009,Artisanal Soap,cosmetics,EcoSense,7.99,one bar,0.1,1.0,biodegradable paper,10,1,India,Excellent,none,Medium,123456789012
+1010,Quick-Dry Activewear,clothing,BrandX,39.99,one size,2.5,15.0,plastic,2,0,China,Poor,"Switch to biodegradable packaging, reduce water usage",High,654321098765
+1011,Energy-Efficient LED Bulb,electronics,EcoCharge,14.99,one unit,0.1,0.5,recycled paper,9,1,South Korea,Excellent,none,Medium,987654321098
+1012,Coconut Oil,groceries,GreenEarth,9.99,500ml,0.2,4.0,glass,10,1,Mexico,Excellent,none,High,123456789012
+1013,Cruelty-Free Lip Balm,cosmetics,EcoSense,6.99,one unit,0.05,1.5,biodegradable plastic,8,1,India,Excellent,none,Medium,987654321098
+1014,Organic Quinoa,groceries,GreenEarth,8.99,500g,0.3,2.0,paper,9,1,Mexico,Excellent,none,High,123456789012
+1015,Eco-Friendly Yoga Mat,clothing,BrandX,24.99,one size,1.8,12.0,plastic,3,0,China,Poor,"Switch to biodegradable packaging, reduce water usage",Medium,654321098765
+999,Bamboo Toothbrush Set,cosmetics,EcoBrush,14.99,One Size,0.23,0.5,biodegradable,9,1,India,Excellent,None,Medium,987654321012
+P00152,Vegan Probiotic Yoghurt,groceries,GreenEarth,4.99,500g,2.75,1.2,biodegradable,9,1,USA,Excellent,None,High,123456789012
+101,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,One Size,0.5,0.2,biodegradable,9,1,India,Excellent,None,High,012345678901
+P0012001,BioGreen Toothpaste,cosmetics,EcoSense,4.99,100g,0.5,1.8,biodegradable,8,1,India,Excellent,None,Medium,123456789012
+1001,EcoCycle Recycled T-Shirt,Clothing,GreenEarth,25.99,One Size,1.23,2.5,Biodegradable,9,1,India,Excellent,Use renewable energy,High,123456789012
+1000,EcoCycle Reusable Water Bottle,groceries,GreenEarth,15.99,One Size,1.21,0.5,paper,8,1,USA,Excellent,None,High,123456789012
+1234,EcoCycle Reusable Bag,clothing,GreenEarth,19.99,One Size,0.5,2.1,paper,9,1,USA,Excellent,,High,123456789012
+1001,EcoCycle Laundry Detergent,cosmetics,GreenEarth,8.99,1L,0.75,0.5,biodegradable,9,1,USA,Excellent,None,High,123456789012
+5001,Bamboo Toothbrush Set,cosmetics,EcoSense,9.99,One Size,0.15,0.2,biodegradable,9,1,India,Excellent,None,Medium,123456789012
+10001,EcoCycle Hair Dye,cosmetics,GreenEarth,9.99,200ml,0.52,1.8,recyclable plastic,8,1,Germany,Excellent,None,High,123456789012
+ID_17,Sustainable Bamboo Toothbrush,cosmetics,GreenEarth,8.99,One Size,0.125,0.15,biodegradable,9,1,India,Excellent,,High,123456789012
+1001,EcoCycle Reusable Water Bottle,groceries,GreenEarth,24.99,One Size,0.5,0.2,biodegradable,8,1,USA,Excellent,None,High,987654321012
+PRD-00123,EcoCycle Recycled Paper Towels,groceries,GreenEarth,4.99,4 rolls (250 sheets each),0.15,0.5,biodegradable paper,9,1,USA,Excellent,None,Medium,123456789012
+5001,EcoCycle Bamboo Toothbrush,cosmetics,GreenEarth,9.99,One Size,0.12,0.05,biodegradable,9,1,India,Excellent,None,High,123456789012
+1000,EcoCycle Bike Helmet,clothing,GreenCycle,29.99,One Size,1.2,0.5,biodegradable,8,1,Germany,Excellent,Reduce carbon footprint by 20%,Medium,123456789012
+PID_0012,EcoPure Dish Soap,cosmetics,GreenEarth,4.99,500ml,0.52,1.21,recyclable plastic,9,1,USA,Excellent,None,Medium,012345678912
+P001215,EcoCycle Reusable Water Bottle,groceries,GreenEarth,19.99,1L,0.15,0.5,recyclable plastic,9,1,USA,Excellent,None,Medium,123456789012
+PRT00000016,Zero Waste Shampoo Bar,cosmetics,EcoPure,8.99,100g,0.2,0.5,biodegradable,9,1,India,Excellent,None,Medium,123456789012
