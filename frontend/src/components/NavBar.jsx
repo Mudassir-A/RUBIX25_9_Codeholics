@@ -30,52 +30,35 @@ import ThemeToggle from "@/components/themeToggle";
 export default function NavBar() {
   return (
     <>
-      <div className="flex flex-row p-4 justify-between align-middle bg-primary  shadow-lg dark:bg-secondary">
-        <div className="w-[50px]">
-          <img src="src\assets\logo.png" alt="" />
-        </div>
-        <div className="hidden md:flex">
-          <MenuBar />
-        </div>
-
-        {/* login and hamburger menu */}
-        <div className="flex flex-row items-center justify-evenly ">
-          <div className="hidden md:flex ">
-            <Link to="/login">
-              <Button variant="muted">
-                <User />
-                Login/Signup
-              </Button>
-            </Link>
+      {/* Navbar fixed at the top with margin from the top */}
+      <div className="fixed top-5 left-0 right-0 mx-auto p-5 bg-secondary shadow-lg dark:bg-secondary rounded-2xl max-w-screen-lg w-full">
+        <div className="flex flex-row justify-between items-center">
+          {/* Logo */}
+          <div className="w-[50px]">
+            <img src="src/assets/logo.png" alt="Logo" />
           </div>
-          <div className="hidden md:flex ">
-            <ThemeToggle />
 
-            {/* to be displayed if logged in */}
-            {/* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="overflow-hidden rounded-full">
-                  <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
+          {/* Menu Bar for larger screens */}
+          <div className="hidden md:flex">
+            <MenuBar />
+          </div>
+
+          {/* Login / Hamburger / Sidebar */}
+          <div className="flex flex-row items-center justify-evenly">
+            <div className="hidden md:flex">
+              <Link to="/login">
+                <Button variant="muted" className="text-white">
+                  <User />
+                  Login/Signup
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu> */}
+              </Link>
+            </div>
+            <div className="hidden md:flex text-white">
+              {/* Theme Toggle & Avatar Dropdown (commented for now) */}
+            </div>
+            {/* LogSidebar component */}
+            <LogSidebar />
           </div>
-          {/* <Sidebar /> */}
-          <LogSidebar />
         </div>
       </div>
     </>

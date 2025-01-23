@@ -12,10 +12,10 @@ export default function LoginForm() {
   };
 
   return (
-    <> 
-      <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-400px]">
+    <>
+      <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-400px] ">
         <div className="hidden bg-muted lg:block">
-          <div className="flex items-center justify-center h-full p-10 text-center">
+          <div className="flex items-center justify-center h-full p-10 text-center bg-primary">
             <div>
               <h1 className="text-4xl font-bold">Welcome to Eco some name</h1>
               <h2 className="text-2xl">Some descc</h2>
@@ -23,8 +23,8 @@ export default function LoginForm() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <Tabs value={tab} className="w-[400px]">
-            <TabsList className="grid w-full grid-cols-2">
+          <Tabs value={tab} className="w-[400px] ">
+            <TabsList className="grid w-full grid-cols-2 bg-primary">
               <TabsTrigger value="login" onClick={() => changeTab("login")}>
                 Login
               </TabsTrigger>
@@ -57,7 +57,7 @@ export default function LoginForm() {
                       <Label htmlFor="password">Password</Label>
                       <Link
                         to="/forgot-password"
-                        className="ml-auto inline-block text-sm underline">
+                        className="ml-auto inline-block text-sm underline  text-secondary">
                         Forgot your password?
                       </Link>
                     </div>
@@ -69,7 +69,7 @@ export default function LoginForm() {
                     />
                   </div>
                   <Link to="/dash">
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full text-secondary">
                       Login
                     </Button>
                   </Link>
@@ -78,7 +78,7 @@ export default function LoginForm() {
                   New to SecureSage?{" "}
                   <Link
                     onClick={() => changeTab("register")}
-                    className="underline">
+                    className="underline text-secondary">
                     Register
                   </Link>
                 </div>
@@ -128,7 +128,7 @@ export default function LoginForm() {
                   Already have an account?{" "}
                   <Link
                     onClick={() => changeTab("login")}
-                    className="underline">
+                    className="underline  text-secondary">
                     Login
                   </Link>
                 </div>

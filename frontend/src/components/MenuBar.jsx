@@ -17,7 +17,7 @@ export default function MenuBar() {
         <NavigationMenuList>
           <NavigationMenuItem className="pr-6">
             <Link href="/reviews" legacyBehavior passHref>
-              <NavigationMenuLink className="hover:bg-primary p-3 rounded-md">
+              <NavigationMenuLink className="hover:bg-accent hover:text-secondary p-3 rounded-md text-white">
                 Home
               </NavigationMenuLink>
             </Link>
@@ -33,7 +33,7 @@ export default function MenuBar() {
           </NavigationMenuItem>
           <NavigationMenuItem className="pr-6">
             <Link href="/ecoscore" legacyBehavior passHref>
-              <NavigationMenuLink className="hover:bg-primary p-3 rounded-md">
+              <NavigationMenuLink className="hover:bg-accent hover:text-secondary p-3 rounded-md text-white">
                 Check Eco Score
               </NavigationMenuLink>
             </Link>
@@ -49,14 +49,14 @@ export default function MenuBar() {
           </NavigationMenuItem>
           <NavigationMenuItem className="pr-6">
             <Link href="/reviews" legacyBehavior passHref>
-              <NavigationMenuLink className="hover:bg-primary p-3 rounded-md">
+              <NavigationMenuLink className="hover:bg-accent hover:text-secondary p-3 rounded-md text-white">
                 Reviews
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem className="pr-6">
             <Link href="/reviews" legacyBehavior passHref>
-              <NavigationMenuLink className="hover:bg-primary p-3 rounded-md">
+              <NavigationMenuLink className="hover:bg-accent hover:text-secondary p-3 rounded-md text-white">
                 About
               </NavigationMenuLink>
             </Link>
