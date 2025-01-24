@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { validateEmail, validatePassword } from "@/utils/validation";
 
 const API_URL = "http://localhost:5000/api/auth";
 
@@ -36,7 +37,7 @@ export default function LoginForm() {
       });
 
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.error);
       }
@@ -51,9 +52,19 @@ export default function LoginForm() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.username || !formData.email || !formData.password) {
       setError("All fields are required");
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setError("Password must be at least 5 characters long and contain both letters and numbers");
       return;
     }
 
@@ -79,7 +90,7 @@ export default function LoginForm() {
       });
 
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.error);
       }
